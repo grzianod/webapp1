@@ -39,6 +39,11 @@ function Question(text, questioner, date) {
         return [...this.list].sort((a, b) => b.score - a.score);
     }
 
+    this.avgScore = function() {
+        const votes = this.list.map(answer => answer.score);
+        return votes.reduce((sum,accumulator,i,array) => sum+accumulator/array.length,0 );
+    }
+
 }
 
 let quest = new Question("Best way of enumerating an array in JS?", "Bob", dayjs("2023-02-28"));
@@ -51,6 +56,8 @@ let find = quest.findAll("Alice");
 let after = quest.afterDate("2023-03-02");
 let sortByDate = quest.listByDate();
 let sortByScore = quest.listByScore();
-sortByDate.forEach(e => console.log(e.str()));
+let avgScore = quest.avgScore();
+
+console.log(avgScore);
 
 
