@@ -32,13 +32,11 @@ function Question(text, questioner, date) {
     }
 
     this.listByDate = function() {
-        const newList = [...this.list];
-        return newList.sort((a,b) => a.date.diff(b.date));
+        return [...this.list].sort((a,b) => a.date.diff(b.date));
     }
 
     this.listByScore = function() {
-        const newList = [...this.list];
-        return newList.sort((a,b) => b.score - a.score);
+        return [...this.list].sort((a,b) => b.score - a.score);
     }
 
 }
@@ -52,6 +50,6 @@ let find = quest.findAll("Alice");
 let after = quest.afterDate("2023-03-02");
 let sortByDate = quest.listByDate();
 let sortByScore = quest.listByScore();
-sortByDate.forEach(e => console.log(e));
+sortByDate.forEach(e => console.log(e.str()));
 
 
