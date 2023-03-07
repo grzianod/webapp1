@@ -1,4 +1,5 @@
 "use strict";
+const dayjs = require('dayjs');
 
 function Answer(text, respondent, score, date) {
     this.text = text;
