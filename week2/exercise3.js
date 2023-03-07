@@ -40,8 +40,9 @@ function Question(text, questioner, date) {
     }
 
     this.avgScore = function() {
-        const votes = this.list.map(answer => answer.score);
-        return votes.reduce((sum,accumulator,i,array) => sum+(accumulator/array.length),0 );
+        return this.list
+            .map(answer => answer.score)
+            .reduce((sum,current,i,array) => sum+(current/array.length), 0);
     }
 
 }
