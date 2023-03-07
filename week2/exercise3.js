@@ -41,7 +41,7 @@ function Question(text, questioner, date) {
 
     this.avgScore = function() {
         const votes = this.list.map(answer => answer.score);
-        return votes.reduce((sum,accumulator,i,array) => sum+accumulator/array.length,0 );
+        return votes.reduce((sum,accumulator,i,array) => sum+(accumulator/array.length),0 );
     }
 
 }
