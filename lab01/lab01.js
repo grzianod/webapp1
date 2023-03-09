@@ -39,30 +39,29 @@ function FilmLibrary(films) {
         return this.films.filter(item => item.rating).sort((a,b) => b.rating-a.rating);
     }
 
-    this.toString = () => this.films.forEach(item => console.log(item.toString()));
+    this.toString = () => this.films.reduce((acc, curr) => acc + curr + "\n", "");
 
 }
 
 let filmLibrary = new FilmLibrary();
-let film1 = new Film(1, "Pulp Fiction", true, dayjs("2023-03-10"), 5);
-let film2 = new Film(2, "21 Grams", true, dayjs("2023-03-17"), 4);
-let film3 = new Film(3, "Star Wars", false);
-let film4 = new Film(4, "Matrix", false);
-let film5 = new Film(5, "Shrek", false, dayjs("2023-03-21"), 3);
 
-filmLibrary.addNewFilm(film1);
-filmLibrary.addNewFilm(film2);
-filmLibrary.addNewFilm(film3);
-filmLibrary.addNewFilm(film4);
-filmLibrary.addNewFilm(film5);
+filmLibrary.addNewFilm(new Film(1, "Pulp Fiction", true, dayjs("2023-03-10"), 5));
+filmLibrary.addNewFilm(new Film(2, "21 Grams", true, dayjs("2023-03-17"), 4));
+filmLibrary.addNewFilm(new Film(3, "Star Wars", false));
+filmLibrary.addNewFilm(new Film(4, "Matrix", false));
+filmLibrary.addNewFilm(new Film(5, "Shrek", false, dayjs("2023-03-21"), 3));
 
-//let sortedByDate = filmLibrary.sortByDate();
-//sortedByDate.forEach(item => console.log(item.toString()));
+console.log("\n\t1) Film Library sorted by date: ");
+filmLibrary.sortByDate().forEach(item => console.log(item.toString()));
 
-//filmLibrary.deleteFilm(3);
+console.log("\n\t2) Removing film with id=3: ");
+filmLibrary.deleteFilm(3);
+console.log(filmLibrary.toString());
 
-//filmLibrary.resetWatchedFilms();
+console.log("\n\t3) Resetting already watched films: ");
+filmLibrary.resetWatchedFilms();
+console.log(filmLibrary.toString());
 
-let sortedByScore = filmLibrary.getRated();
-sortedByScore.forEach(item => console.log(item.toString()));
+console.log("\n\t4) Film Library sorted by rating: ");
+filmLibrary.getRated().forEach(item => console.log(item.toString()));
 
