@@ -6,9 +6,9 @@ function Film(id, title, favorites = false, date, rating ) {
     this.title = title;
     this.favorites = favorites;
     this.date = date ?? null;
-    this.rating = rating ?? 0;
+    this.rating = rating ?? null;
 
-    this.toString = () => `ID: ${this.id} Title: ${this.title} Favorite: ${this.favorites} Watch Date: ${this.date.format("YYYY-MM-DD")} Rating: ${this.rating}`;
+    this.toString = () => `ID: ${this.id} Title: ${this.title} Favorite: ${this.favorites} Watch Date: ${this.date ? this.date.format("YYYY-MM-DD") : "No Date"} Rating: ${this.rating ? this.rating : "No Rating"}`;
 }
 
 function FilmLibrary(films) {
@@ -18,7 +18,20 @@ function FilmLibrary(films) {
         this.films.push(film);
     }
 
-    this.toString = () => this.films.forEach(item => item.toString());
+    this.sortByDate = function() {
+        return [...this.films].sort((a,b) => {
+            if(a.date && !b.date) return -1;
+            if(!a.date && b.date) return 1;
+            if(!a.date && !b.date) return 0;
+            return a.date.diff(b.date);
+        });
+    }
+
+    this.deleteFilm = function(id) {
+        this.films = this.films.filter( item => item.id != id );
+    }
+
+    this.toString = () => this.films.forEach(item => console.log(item.toString()));
 
 }
 
@@ -35,4 +48,10 @@ filmLibrary.addNewFilm(film3);
 filmLibrary.addNewFilm(film4);
 filmLibrary.addNewFilm(film5);
 
-console.log(filmLibrary.toString());
+//filmLibrary.toString();
+
+let sortedFilmLibrary = filmLibrary.sortByDate();
+//sortedFilmLibrary.forEach(item => console.log(item));
+
+filmLibrary.deleteFilm(3);
+filmLibrary.toString();
