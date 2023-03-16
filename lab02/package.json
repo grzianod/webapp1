@@ -1,14 +1,15 @@
 {
-  "dependencies": {
-    "dayjs": "^1.11.7"
-  },
-  "name": "lab01",
+  "name": "lab02",
   "version": "1.0.0",
+  "description": "",
   "main": "es01.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "sqlite3": "^5.1.6"
+  }
 }
