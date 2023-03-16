@@ -16,31 +16,6 @@ function Film(id, title, favorites = false, date, rating ) {
 function FilmLibrary(films) {
     this.films = films ?? [];
 
-    this.addNewFilm = function (film) {
-        this.films.push(film);
-    }
-
-    this.sortByDate = function() {
-        return [...this.films].sort((a,b) => {
-            if(a.date && !b.date) return -1;
-            if(!a.date && b.date) return 1;
-            if(!a.date && !b.date) return 0;
-            return a.date.diff(b.date);
-        });
-    }
-
-    this.deleteFilm = function(id) {
-        this.films = this.films.filter( item => item.id != id );
-    }
-
-    this.resetWatchedFilms = function() {
-        this.films.forEach(item => item.date = null );
-    }
-
-    this.getRated = function() {
-        return this.films.filter(item => item.rating).sort((a,b) => b.rating-a.rating);
-    }
-
     this.getAll = async function () {
         return new Promise((resolve, reject) => {
             db.all("SELECT * FROM films;", [], (err, rows) => {
@@ -95,6 +70,15 @@ function FilmLibrary(films) {
            });
         });
 
+    }
+
+    this.addFilm = async function(film) {
+        return new Promise( (resolve, reject) => {
+           db.run( "INSERT INTO films(id, title, favorite, watchdate, rating) VALUES (?, ?, ?, ?, ?);", [film.id, film.title , film.favorite, film.watchdate, film.rating], function(err) {
+               if(err) throw err;
+               else resolve('Added successfully');
+           })
+        });
     }
 
     this.toString = () => this.films.reduce((acc, curr) => acc + curr.toString() + "\n", "");
@@ -157,6 +141,16 @@ async function main() {
         console.log("\n\t5) Get films with title" + title + "from database: ");
         let allTitle = await filmLibrary.getByTitle(title);
         allTitle.forEach(item => console.log(item.toString()));
+    }
+    catch(err) {
+        console.log(err);
+    }
+
+    try {
+        let film = new Film(6, "Guerra e Pace", false, null, null);
+        console.log("\n\t6) Adding film " + film.title + "to database: ");
+        let result = await filmLibrary.addFilm(film);
+        console.log("\n" + result);
     }
     catch(err) {
         console.log(err);
