@@ -1,0 +1,19 @@
+.bi-star:before {
+    content: "\2606";
+    color: #ccc;
+}
+
+.bi-star:hover:before,
+.bi-star.filled:before {
+    content: "\2605";
+    color: #CD853F;
+}
+
+.active {
+    content: "\2605";
+    color: #CD853F;
+}
+
+.film {
+
+}
