@@ -247,7 +247,7 @@ function updateRating(film, rating) {
             star.setAttribute("opacity", "100%");
         } else {
             star.setAttribute("fill", "currentColor");
-            star.setAttribute("opacity", "25%");
+            star.setAttribute("opacity", "35%");
         }
     });
 }
