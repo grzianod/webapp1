@@ -1,18 +1,17 @@
-.bi-star:before {
-    content: "\2606";
-    color: #ccc;
+.bi-star:hover {
+    content: "\f588";
+    color: #FFDF00;
+    fill: #FFDF00;
+    background-color: #FFDF00;
 }
 
-.bi-star:hover:before,
-.bi-star.filled:before {
+.filled:after {
     content: "\2605";
-    color: #CD853F;
+    color: #FDCC0D;
+    fill: #FDCC0D;
+    background-color: #FDCC0D;
 }
 
-.active {
-    content: "\2605";
-    color: #CD853F;
-}
 
 .film {
 
