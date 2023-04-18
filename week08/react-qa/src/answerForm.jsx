@@ -22,9 +22,15 @@ function AnswerForm(props) {
             setTimeout(() => setAlert(''), 2000);
         }
         else if (text === '')
+        {
             setAlert("Text not valid!");
+            setTimeout(() => setAlert(''), 2000);
+        }
         else if (respondent === '')
+        {
             setAlert("Respondent not valid!");
+            setTimeout(() => setAlert(''), 2000);
+        }
         /* End validation phase */
         else {
             const e = {

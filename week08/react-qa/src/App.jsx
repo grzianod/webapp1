@@ -76,6 +76,7 @@ function MyTable(props) {
   }
 
   const addToList = (item) => {
+    item.id = list[list.length-1].id +1;
     setList( (oldList) => [...oldList, item]);
   }
 
