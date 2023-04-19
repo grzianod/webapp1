@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "react-bootstrap": "^2.7.4",
+    "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
+    "sqlite3": "^5.1.6"
+  }
+}

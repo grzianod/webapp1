@@ -1,0 +1,13 @@
+.bi-star:hover {
+    content: "\f588";
+    color: #FFDF00;
+    fill: #FFDF00;
+    background-color: #FFDF00;
+}
+
+.filled:after {
+    content: "\2605";
+    color: #FDCC0D;
+    fill: #FDCC0D;
+    background-color: #FDCC0D;
+}
