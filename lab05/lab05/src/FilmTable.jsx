@@ -7,14 +7,6 @@ import {Table} from "react-bootstrap";
 function FilmTable(props) {
     const {filter} = props;
 
-    function changeFavorite(id) {
-
-    }
-
-    function changeRating(id, index) {
-
-    }
-
     return (
         <>
             <div className={"row"}>
@@ -41,7 +33,7 @@ function FilmTable(props) {
                         </tr>
                         </thead>
                         <tbody id="table_body">
-                        { props.films.map((item) => <FilmRow key={item.id} item={item} changeFavorite={changeFavorite} changeRating={changeRating}/>) }
+                        { props.films.map((item) => <FilmRow key={item.id} item={item} changeFavorite={props.changeFavorite} changeRating={props.changeRating} deleteFilm={props.deleteFilm}/>) }
                         </tbody>
                     </Table>
 

@@ -15,14 +15,13 @@ function FilmRow(props) {
             <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{item.id}</th>
             <td className="text-center" style={{verticalAlign: "middle"}}>{item.title}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={item.favorites} onClick={() => { props.changeFavorite(item.id); item.favorites = !item.favorites;}}/></td>
+                <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={item.favorites} onClick={() => { props.changeFavorite(item.id);}}/></td>
             <td className="text-center" style={{verticalAlign: "middle"}}>{dayjs(item.date).isValid() ? dayjs(item.date).format("MMMM D, YYYY").toString() : "Unwatched"}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 {
                     [...Array(5)].map( (star, index) => {
                         return <svg onClick={() => {
                                             props.changeRating(item.id, index);
-
                         } } type="button" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-star" viewBox="0 0 16 16">
                             <path
@@ -32,7 +31,7 @@ function FilmRow(props) {
                 }
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Button inputMode={"none"} variant={"danger"}>
+                <Button inputMode={"none"} variant={"danger"} onClick={() => { props.deleteFilm(item.id) }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          className="bi bi-trash" viewBox="0 0 16 16">
                         <path

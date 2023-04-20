@@ -42,24 +42,20 @@ function FilmLibrary(films) {
         });
     }
 
+    this.changeFavorite = function(id) {
+        this.films.forEach((film) => {
+            if(film.id === id) film.favorites = !film.favorites;
+        });
+    }
+
+    this.changeRating = function(id, index) {
+        this.films.forEach( (film) => {
+           if(film.id === id) film.rating = index;
+        });
+    }
+
     this.deleteFilm = function(id) {
-        this.films = this.films.filter( item => item.id != id );
-    }
-
-    this.setRating = function(id, rating) {
-        this.films.forEach( film => {
-           if(film.id == id) film.rating = rating;
-        });
-    }
-
-    this.setFavorite = function(id, favorite) {
-        console.log(id);
-        this.films.forEach( film => {
-            if(film.id == id) {
-                film.favorites = favorite;
-                console.log(film);
-            }
-        });
+       this.films = this.films.filter( (film) => film.id !== id);
     }
 
     this.toString = () => this.films.reduce((acc, curr) => acc + curr + "\n", "");
