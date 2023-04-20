@@ -16,7 +16,7 @@ function NavigationBar(props) {
             <Container fluid style={{margin: "2rem", marginRight: "0rem"}}>
                 <Navbar.Brand href="#">
                     <ul className={"nav align-items-center align-items-start"}>
-                        <li><img src="pixar.gif" width="68" height="68" className="rounded-circle me-2"></img></li>
+                        <li><img src="./pixar.gif" width="68" height="68" className="rounded-circle me-2"></img></li>
                         <li style={{fontSize: "2.1rem", color: "#2F3B50"}}>
                             <strong>Netflux</strong></li>
                     </ul>
@@ -24,13 +24,13 @@ function NavigationBar(props) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav" style={{marginTop: "0.5rem"}}>
                     <Nav className="me-auto" defaultActiveKey={"#all"}>
-                        <Nav.Link href="#all" key="#all" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("All"); props.setFilms(filmLibrary.getAll()); }}>All</Nav.Link>
-                        <Nav.Link href="#favorites" key="#favorites" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Favorites"); props.setFilms(filmLibrary.getFavorites());}}>Favorites</Nav.Link>
-                        <Nav.Link href="#bestrated" key="#bestrated" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Best Rated"); props.setFilms(filmLibrary.getBestRated()); }}>Best
+                        <Nav.Link key="#all" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("All"); props.setFilms(filmLibrary.getAll()); }}>All</Nav.Link>
+                        <Nav.Link key="#favorites" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Favorites"); props.setFilms(filmLibrary.getFavorites());}}>Favorites</Nav.Link>
+                        <Nav.Link key="#bestrated" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Best Rated"); props.setFilms(filmLibrary.getBestRated()); }}>Best
                             Rated</Nav.Link>
-                        <Nav.Link href="#lastmonth" key="#lastmonth" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Seen Last Month"); props.setFilms(filmLibrary.getSeenLastMonth());}}>Seen Last
+                        <Nav.Link key="#lastmonth" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Seen Last Month"); props.setFilms(filmLibrary.getSeenLastMonth());}}>Seen Last
                             Month</Nav.Link>
-                        <Nav.Link href="#unseen" key="#unseen" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Unseen"); props.setFilms(filmLibrary.getUnseen());}}>Unseen</Nav.Link>
+                        <Nav.Link key="#unseen" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Unseen"); props.setFilms(filmLibrary.getUnseen());}}>Unseen</Nav.Link>
                     </Nav>
                     <Nav>
 
@@ -49,11 +49,11 @@ function NavigationBar(props) {
                                                   className="rounded-circle"></img>
                                          } >
                                 <NavDropdown.Header>Others</NavDropdown.Header>
-                                <NavDropdown.Item href="#action3">New Project...</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Settings</NavDropdown.Item>
-                                <NavDropdown.Item href="#action5">Profile</NavDropdown.Item>
+                                <NavDropdown.Item >New Project...</NavDropdown.Item>
+                                <NavDropdown.Item>Settings</NavDropdown.Item>
+                                <NavDropdown.Item>Profile</NavDropdown.Item>
                                 <NavDropdown.Divider></NavDropdown.Divider>
-                                <NavDropdown.Item href="#action5">Sign Out</NavDropdown.Item>
+                                <NavDropdown.Item>Sign Out</NavDropdown.Item>
                             </NavDropdown>
                         </Form>
 
