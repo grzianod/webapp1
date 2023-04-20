@@ -17,32 +17,23 @@ function FilmLibrary(films) {
         this.films.push(film);
     }
 
-    this.sortByDate = function() {
-        return [...this.films].sort((a,b) => {
-            if(a.date && !b.date) return -1;
-            if(!a.date && b.date) return 1;
-            if(!a.date && !b.date) return 0;
-            return a.date.diff(b.date);
-        });
+    this.getAll = function() {
+        return [...this.films];
     }
 
-    this.favoriteFilms = function() {
+    this.getFavorites = function() {
         return [...this.films].filter( item => item.favorites );
     }
 
-    this.deleteFilm = function(id) {
-        this.films = this.films.filter( item => item.id != id );
-    }
-
-    this.resetWatchedFilms = function() {
-        this.films = this.films.forEach(item => item.date = null );
-    }
-
-    this.getRated = function() {
+    this.getBestRated = function() {
         return [...this.films].sort((a,b) => b.rating-a.rating);
     }
 
-    this.seenLastMonth = function() {
+    this.getUnseen = function() {
+        return [...this.films].filter( item => item.date == null );
+    }
+
+    this.getSeenLastMonth = function() {
         let now = dayjs();
         return [...this.films].filter( item => {
             if( item.date != null && item.date.diff(now, "months") >= 0)
@@ -51,8 +42,8 @@ function FilmLibrary(films) {
         });
     }
 
-    this.unseen = function() {
-        return [...this.films].filter( item => item.date == null );
+    this.deleteFilm = function(id) {
+        this.films = this.films.filter( item => item.id != id );
     }
 
     this.setRating = function(id, rating) {

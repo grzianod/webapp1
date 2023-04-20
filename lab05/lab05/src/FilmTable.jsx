@@ -3,9 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FilmRow from "./FilmRow.jsx"
 import FilmLibrary from "./FilmLibrary.jsx";
 import Film from "./FilmLibrary.jsx";
-
+import {Table} from "react-bootstrap";
 function FilmTable(props) {
-    const [list, setList] = useState(props.films)
+    const {filter} = props;
+
+    function changeFavorite(id) {
+
+    }
+
+    function changeRating(id, index) {
+
+    }
 
     return (
         <>
@@ -16,12 +24,12 @@ function FilmTable(props) {
                     <br/>
                     <ul className="nav col-lg-auto me-lg-auto mb-2 mb-md-0">
                         <strong>
-                            <li style={{fontSize: "2rem", color: "#2F3B50"}} id="main_title">All</li>
+                            <li style={{fontSize: "2rem", color: "#2F3B50"}} id="main_title">{ props.filter }</li>
                         </strong>
                     </ul>
                     <br/>
 
-                    <table className="table justify-content-center" id="table">
+                    <Table className="table justify-content-center" id="table">
                         <thead className="thead-dark-bg">
                         <tr>
                             <th scope="col" className="text-center">#</th>
@@ -33,9 +41,9 @@ function FilmTable(props) {
                         </tr>
                         </thead>
                         <tbody id="table_body">
-                        { list.map((item) => <FilmRow key={item.id} item={item} />) }
+                        { props.films.map((item) => <FilmRow key={item.id} item={item} changeFavorite={changeFavorite} changeRating={changeRating}/>) }
                         </tbody>
-                    </table>
+                    </Table>
 
 
                 </div>
