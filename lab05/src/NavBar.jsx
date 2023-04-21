@@ -10,7 +10,6 @@ import filmLibrary from "./FilmLibrary.jsx";
 function NavigationBar(props) {
 
     return (
-        <>
         <Navbar collapseOnSelect expand="lg" bg="white" variant="white">
             <Container fluid style={{margin: "2rem", marginRight: "0rem", marginBottom: "0rem"}}>
                 <Navbar.Brand href="#">
@@ -21,15 +20,13 @@ function NavigationBar(props) {
                     </ul>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                <Navbar.Collapse id="responsive-navbar-nav" style={{marginTop: "0.5rem"}}>
+                <Navbar.Collapse id="navbar-nav" style={{marginTop: "0.5rem"}}>
                     <Nav className="me-auto" defaultActiveKey={"#all"}>
-                        <Nav.Link key="#all" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("All"); props.setFilms(filmLibrary.getAll()); }}>All</Nav.Link>
-                        <Nav.Link key="#favorites" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Favorites"); props.setFilms(filmLibrary.getFavorites());}}>Favorites</Nav.Link>
-                        <Nav.Link key="#bestrated" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Best Rated"); props.setFilms(filmLibrary.getBestRated()); }}>Best
-                            Rated</Nav.Link>
-                        <Nav.Link key="#lastmonth" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Seen Last Month"); props.setFilms(filmLibrary.getSeenLastMonth());}}>Seen Last
-                            Month</Nav.Link>
-                        <Nav.Link key="#unseen" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Unseen"); props.setFilms(filmLibrary.getUnseen());}}>Unseen</Nav.Link>
+                        {(props.filter === "All") ? <Nav.Link key="#all" className="active" onClick={() => { props.setFilter("All"); props.setFilms(filmLibrary.getAll()); }}>All</Nav.Link> : <Nav.Link key="#all" onClick={() => { props.setFilter("All"); props.setFilms(filmLibrary.getAll()); }}>All</Nav.Link>}
+                        {(props.filter === "Favorites") ? <Nav.Link key="#favorites" className="active" onClick={() => { props.setFilter("Favorites"); props.setFilms(filmLibrary.getFavorites());}}>Favorites</Nav.Link> : <Nav.Link key="#favorites" onClick={() => { props.setFilter("Favorites"); props.setFilms(filmLibrary.getFavorites());}}>Favorites</Nav.Link> }
+                        {(props.filter === "Best Rated") ? <Nav.Link key="#bestrated" className="active" onClick={() => { props.setFilter("Best Rated"); props.setFilms(filmLibrary.getBestRated()); }}>Best Rated</Nav.Link> : <Nav.Link key="#bestrated"  onClick={() => { props.setFilter("Best Rated"); props.setFilms(filmLibrary.getBestRated()); }}>Best Rated</Nav.Link> }
+                        {(props.filter === "Seen Last Month") ? <Nav.Link key="#lastmonth" className="active" onClick={() => { props.setFilter("Seen Last Month"); props.setFilms(filmLibrary.getSeenLastMonth());}}>Seen Last Month</Nav.Link> : <Nav.Link key="#lastmonth" onClick={() => { props.setFilter("Seen Last Month"); props.setFilms(filmLibrary.getSeenLastMonth());}}>Seen Last Month</Nav.Link> }
+                        {(props.filter === "Unseen") ? <Nav.Link key="#unseen" className="active" onClick={() => { props.setFilter("Unseen"); props.setFilms(filmLibrary.getUnseen());}}>Unseen</Nav.Link> : <Nav.Link key="#unseen" onClick={() => { props.setFilter("Unseen"); props.setFilms(filmLibrary.getUnseen());}}>Unseen</Nav.Link> }
                     </Nav>
 
                         <Nav >
@@ -61,7 +58,6 @@ function NavigationBar(props) {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        </>
     );
 
 }

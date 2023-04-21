@@ -52,7 +52,7 @@ function App() {
 
     return (
         <>
-            <NavigationBar setFilter={setFilter} films={films} setFilms={setFilms}></NavigationBar>
+            <NavigationBar filter={filter} setFilter={setFilter} films={films} setFilms={setFilms}></NavigationBar>
             <FilmTable films={films} filter={filter} setFilter={setFilter} setFilms={setFilms} changeFavorite={changeFavorite} changeRating={changeRating} deleteFilm={deleteFilm}></FilmTable>
         </>
     );
