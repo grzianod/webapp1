@@ -1,4 +1,3 @@
-import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -6,7 +5,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './navbar.css'
-import FilmLibrary from "./FilmLibrary.jsx";
 import filmLibrary from "./FilmLibrary.jsx";
 
 function NavigationBar(props) {
@@ -32,17 +30,19 @@ function NavigationBar(props) {
                             Month</Nav.Link>
                         <Nav.Link key="#unseen" style={{fontSize: "1rem"}} onClick={() => { props.setFilter("Unseen"); props.setFilms(filmLibrary.getUnseen());}}>Unseen</Nav.Link>
                     </Nav>
-                    <Nav>
 
-                        <Form className="d-flex">
+                        <Nav >
+
+                        <Form className={"d-inline-flex"}>
                             <Form.Control
                                 style={{fontStyle: "italic"}}
                                 type="search"
                                 placeholder="Search..."
-                                className="me-2"
+                                className="flex-grow-1 me-2"
                                 aria-label="Search"
                             />
                             <NavDropdown
+                                        id="basic-nav-dropdown"
                                          align={"end"}
                                          title={
                                              <img src="me.jpeg" alt="mdo" width="35" height="35"
@@ -56,8 +56,8 @@ function NavigationBar(props) {
                                 <NavDropdown.Item>Sign Out</NavDropdown.Item>
                             </NavDropdown>
                         </Form>
-
                     </Nav>
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
