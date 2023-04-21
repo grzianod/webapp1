@@ -10,8 +10,9 @@ import filmLibrary from "./FilmLibrary.jsx";
 function NavigationBar(props) {
 
     return (
+        <>
         <Navbar collapseOnSelect expand="lg" bg="white" variant="white">
-            <Container fluid style={{margin: "2rem", marginRight: "0rem"}}>
+            <Container fluid style={{margin: "2rem", marginRight: "0rem", marginBottom: "0rem"}}>
                 <Navbar.Brand href="#">
                     <ul className={"nav align-items-center align-items-start"}>
                         <li><img src="./pixar.gif" width="68" height="68" className="rounded-circle me-2"></img></li>
@@ -61,6 +62,7 @@ function NavigationBar(props) {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+        </>
     );
 
 }
