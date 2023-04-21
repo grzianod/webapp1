@@ -43,7 +43,6 @@ function NavigationBar(props) {
                                 aria-label="Search"
                             />
                             <NavDropdown
-                                        id="basic-nav-dropdown"
                                          align={"end"}
                                          title={
                                              <img src="me.jpeg" alt="mdo" width="35" height="35"

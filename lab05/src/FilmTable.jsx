@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FilmRow from "./FilmRow.jsx"
-import FilmLibrary from "./FilmLibrary.jsx";
-import Film from "./FilmLibrary.jsx";
 import {Table} from "react-bootstrap";
 function FilmTable(props) {
     const {filter} = props;
