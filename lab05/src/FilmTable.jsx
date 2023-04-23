@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FilmRow from "./FilmRow.jsx"
-import {Table} from "react-bootstrap";
+import {Button, Table} from "react-bootstrap";
+import FilmForm  from "./FilmForm.jsx";
 function FilmTable(props) {
     const {filter} = props;
+    const [showForm, setShowForm] = useState(false);
 
     return (
         <>
@@ -32,6 +34,7 @@ function FilmTable(props) {
                         </thead>
                         <tbody id="table_body">
                         { props.films.map((item) => <FilmRow key={item.id} item={item} changeFavorite={props.changeFavorite} changeRating={props.changeRating} deleteFilm={props.deleteFilm}/>) }
+                        <FilmForm show={showForm} setShow={setShowForm} add={props.add} suggested={props.suggested}></FilmForm>
                         </tbody>
                     </Table>
 

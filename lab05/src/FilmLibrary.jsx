@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 
 function Film(id, title, favorites = false, date, rating ) {
-    this.id = id;
-    this.title = title;
-    this.favorites = favorites;
+    this.id = id ?? null;
+    this.title = title ?? "";
+    this.favorites = favorites ?? false;
     this.date = date ?? null;
     this.rating = rating ?? null;
 
@@ -13,12 +13,24 @@ function Film(id, title, favorites = false, date, rating ) {
 function FilmLibrary(films) {
     this.films = films ?? [];
 
+    this.checkID = function(id) {
+        return (this.films.filter( film => film.id === id).length === 0);
+    }
+
+    this.suggestedID = function() {
+        return this.films.length + 1;
+    }
+
+    this.addNewFilmByElements = function (id, title, favorites, date, rating) {
+        this.films.push(new Film(id, title, favorites, date, rating));
+    }
+
     this.addNewFilm = function (film) {
         this.films.push(film);
     }
 
     this.getAll = function() {
-        return [...this.films];
+        return [...this.films].sort((a,b) => a.id-b.id);
     }
 
     this.getFavorites = function() {
@@ -30,13 +42,13 @@ function FilmLibrary(films) {
     }
 
     this.getUnseen = function() {
-        return [...this.films].filter( item => item.date == null );
+        return [...this.films].filter( item => item.date === null );
     }
 
     this.getSeenLastMonth = function() {
         let now = dayjs();
         return [...this.films].filter( item => {
-            if( item.date != null && item.date.diff(now, "months") >= 0)
+            if( item.date != null && dayjs(item.date).diff(now, "months") >= 0)
                 return 1;
             return 0;
         });
