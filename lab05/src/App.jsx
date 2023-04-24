@@ -10,7 +10,6 @@ function App() {
     const [filter, setFilter] = useState("All");
     const [films, setFilms] = useState(filmLibrary.films);
     const [alert, setAlert] = useState('');
-    const [suggested, setSuggested] = useState(filmLibrary.suggestedID());
 
     function setContext() {
         if(filter === "All")
@@ -42,7 +41,6 @@ function App() {
 
     function addFilm(id, title, favorites, date, rating) {
         let flag = true;
-        console.log(id);
         if(!filmLibrary.checkID(id)) {
             setAlert("ID");
             flag = false;
@@ -54,16 +52,16 @@ function App() {
             setTimeout(() => setAlert(''), 3000);
         }
         if(flag) {
-            filmLibrary.addNewFilmByElements(id, title, favorites, date, rating);
-            setSuggested(filmLibrary.suggestedID());
+            filmLibrary.addNewFilmByElements(id, title, (favorites === "on"), date, rating);
             setContext();
         }
+        console.log(filmLibrary.toString());
     }
 
     return (
         <>
             <NavigationBar filter={filter} setFilter={setFilter} films={films} setFilms={setFilms}></NavigationBar>
-            <FilmTable films={films} filter={filter} setFilter={setFilter} setFilms={setFilms} changeFavorite={changeFavorite} changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm} suggested={suggested}></FilmTable>
+            <FilmTable films={films} filter={filter} setFilter={setFilter} setFilms={setFilms} changeFavorite={changeFavorite} changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm}></FilmTable>
             { alert ? <Container className={"align-items-center d-flex justify-content-center fixed-bottom"}><Alert dismissible className={"text-center"} style={{width: "50rem"}} value={alert} onClose={() => setAlert('')} variant="danger">{alert} not valid!</Alert></Container> : false }
         </>
     );

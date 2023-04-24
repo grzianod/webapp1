@@ -12,7 +12,7 @@ function FilmRow(props) {
 
     return (
         <tr>
-            <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{item.id}</th>
+            <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{props.index}</th>
             <td className="text-center" style={{verticalAlign: "middle"}}>{item.title}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={item.favorites} onClick={() => { props.changeFavorite(item.id);}}/></td>

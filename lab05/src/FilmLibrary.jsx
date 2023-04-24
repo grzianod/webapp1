@@ -7,7 +7,7 @@ function Film(id, title, favorites = false, date, rating ) {
     this.date = date ?? null;
     this.rating = rating ?? null;
 
-    this.toString = () => `ID: ${this.id} Title: ${this.title} Favorite: ${this.favorites} Watch Date: ${this.date ? this.date.format("YYYY-MM-DD") : "Unwatched"} Rating: ${this.rating ? this.rating : "Unrated"}`;
+    this.toString = () => `ID: ${this.id} Title: ${this.title} Favorite: ${this.favorites} Watch Date: ${dayjs(this.date).isValid() ? dayjs(this.date).format("YYYY-MM-DD") : "Unwatched"} Rating: ${this.rating ? this.rating : "Unrated"}`;
 }
 
 function FilmLibrary(films) {
@@ -30,7 +30,7 @@ function FilmLibrary(films) {
     }
 
     this.getAll = function() {
-        return [...this.films].sort((a,b) => a.id-b.id);
+        return [...this.films].sort((a,b) => { return ( ( a.title === b.title ) ? 0 : ( ( a.title > b.title ) ? 1 : -1 ) ); });
     }
 
     this.getFavorites = function() {
@@ -38,7 +38,10 @@ function FilmLibrary(films) {
     }
 
     this.getBestRated = function() {
-        return [...this.films].sort((a,b) => b.rating-a.rating);
+        return [...this.films].sort((a,b) => {
+            if(b.rating === a.rating)
+                return ( ( a.title === b.title ) ? 0 : ( ( a.title > b.title ) ? 1 : -1 ) );
+            return b.rating > a.rating; });
     }
 
     this.getUnseen = function() {

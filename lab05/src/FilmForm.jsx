@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Table} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import filmLibrary from "./FilmLibrary.jsx";
+
 function FilmForm(props) {
-    const [id, setID] = useState(props.suggested);
+    const [id, setID] = useState(filmLibrary.suggestedID());
     const [title, setTitle] = useState("");
     const [favorite, setFavorite] = useState(false);
     const [date, setDate] = useState(null);
@@ -13,9 +15,13 @@ function FilmForm(props) {
         event.preventDefault();
         props.setShow(false);
         props.add(id, title, favorite, date, rating);
+        setID(filmLibrary.suggestedID());
+        setTitle("");
+        setFavorite(false);
+        setDate(null);
+        setRating(0);
     }
 
-    let film = {id: 0, title: "", };
     return (props.show === false) ? (
         <>
             <th scope={"row"} style={{verticalAlign: "middle"}}></th>
@@ -26,8 +32,7 @@ function FilmForm(props) {
             <td style={{verticalAlign: "middle"}}>
                 <div className={"d-flex justify-content-center"}>
                     <Button type="button" variant={"outline-primary"} onClick={() => {
-                        props.setShow(true);
-                        setID(props.suggested);}}>
+                        props.setShow(true);}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path
@@ -39,24 +44,17 @@ function FilmForm(props) {
         </>
     ) : (
         <>
-            <th scope={"row"} style={{verticalAlign: "middle"}}>
-                <div className={"d-flex justify-content-center"}>
-                    <Form.Control type="text" style={{width: "3rem", height: "2rem", display: "inline-block", textAlign: "center"}} placeholder={id} value={id} onChange={(event) => {
-                        const v = parseInt(event.target.value);
-                        (!isNaN(v)) ? setID(v) : setID('');
-                    }}></Form.Control>
-                </div>
-            </th>
+            <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{id}</th>
             <td style={{verticalAlign: "middle"}}>
                 <div className={"d-flex justify-content-center"}>
-                    <Form.Control style={{width: "10rem", height: "2rem", display: "inline-block", textAlign: "center"}} onChange={(event) => setTitle(event.target.value)}></Form.Control>
+                    <Form.Control style={{width: "14rem", height: "2rem", display: "inline-block", textAlign: "center"}} onChange={(event) => setTitle(event.target.value)}></Form.Control>
                 </div>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={false} onChange={(event) => setFavorite(event.target.value)}/></td>
             <td style={{verticalAlign: "middle"}}>
                 <div className={"d-flex justify-content-center"}>
-                    <Form.Control type={"date"} style={{width: "10rem", height: "2rem", display: "inline-block", textAlign: "center"}} onChange={(event) => setDate(event.target.value)}></Form.Control>
+                    <Form.Control type={"date"} style={{width: "14rem", height: "2rem", display: "inline-block", textAlign: "center"}} onChange={(event) => setDate(event.target.value)}></Form.Control>
                 </div>
             </td>
             <td style={{verticalAlign: "middle"}}>
@@ -85,7 +83,7 @@ function FilmForm(props) {
                     <Button type="submit" variant={"outline-primary"} onClick={save}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-clipboard-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
+                            <path fillRule="evenodd"
                                   d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
                             <path
                                 d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
