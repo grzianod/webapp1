@@ -39,9 +39,9 @@ function FilmLibrary(films) {
 
     this.getBestRated = function() {
         return [...this.films].sort((a,b) => {
-            if(b.rating === a.rating)
-                return ( ( a.title === b.title ) ? 0 : ( ( a.title > b.title ) ? 1 : -1 ) );
-            return b.rating > a.rating; });
+            if(a.rating === b.rating) return ( ( a.title === b.title ) ? 0 : ( ( a.title > b.title ) ? 1 : -1 ) );
+            else return (b.rating > a.rating) ? 1 : -1;
+        } );
     }
 
     this.getUnseen = function() {

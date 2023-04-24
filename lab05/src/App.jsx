@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 
 function App() {
     const [filter, setFilter] = useState("All");
-    const [films, setFilms] = useState(filmLibrary.films);
+    const [films, setFilms] = useState(filmLibrary.getAll());
     const [alert, setAlert] = useState('');
 
     function setContext() {
@@ -52,10 +52,9 @@ function App() {
             setTimeout(() => setAlert(''), 3000);
         }
         if(flag) {
-            filmLibrary.addNewFilmByElements(id, title, (favorites === "on"), date, rating);
+            filmLibrary.addNewFilmByElements(id, title, favorites, date, rating);
             setContext();
         }
-        console.log(filmLibrary.toString());
     }
 
     return (

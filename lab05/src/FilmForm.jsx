@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Table} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import filmLibrary from "./FilmLibrary.jsx";
 
@@ -51,7 +51,7 @@ function FilmForm(props) {
                 </div>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={false} onChange={(event) => setFavorite(event.target.value)}/></td>
+                <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={false} onChange={(event) => setFavorite(event.target.value === "on")}/></td>
             <td style={{verticalAlign: "middle"}}>
                 <div className={"d-flex justify-content-center"}>
                     <Form.Control type={"date"} style={{width: "14rem", height: "2rem", display: "inline-block", textAlign: "center"}} onChange={(event) => setDate(event.target.value)}></Form.Control>
