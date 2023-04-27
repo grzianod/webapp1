@@ -84,6 +84,10 @@ function FilmLibrary(films) {
         })
     }
 
+    this.deleteAll = function() {
+        this.films = [];
+    }
+
     this.toString = () => this.films.reduce((acc, curr) => acc + curr + "\n", "");
 
 }

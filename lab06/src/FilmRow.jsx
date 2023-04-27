@@ -20,7 +20,7 @@ function FilmRow(props) {
             <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{props.index}</th>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <div className={"d-flex justify-content-center"}>
-                    <Form.Control style={{maxWidth: "12rem", height: "2rem", display: "inline-block", textAlign: "center"}} value={title} onChange={(event) => setTitle(event.target.value)}></Form.Control>
+                    <Form.Control style={{minWidth: "10rem", maxWidth: "12rem", height: "2rem", display: "inline-block", textAlign: "center"}} value={title} onChange={(event) => setTitle(event.target.value)}></Form.Control>
                 </div>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
@@ -59,17 +59,17 @@ function FilmRow(props) {
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Container className={"justify-content-between"}>
-                <Button className={"me-2"} inputMode={"none"} type={"button"} variant={"primary"} onClick={() => {
+                <Button className={"me-2"} inputMode={"none"} type={"button"} variant={"outline-success"} onClick={() => {
                     props.modify(item.id, title, favorite, date, rating);
                     if(title === "")
                         setTitle(item.title);
                     setForm(false); }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         className="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                         className="bi bi-check2-square" viewBox="0 0 16 16">
                         <path
-                            d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                            d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
                         <path
-                            d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
                     </svg>
                 </Button>
                     <Button inputMode={"none"} type={"button"} variant={"outline-danger"} onClick={() => { props.deleteFilm(item.id) }}>
@@ -113,11 +113,11 @@ function FilmRow(props) {
                 <Container className={"justify-content-between"} style={{minWidth: "7.3rem"}}>
                     <Button className={"me-2"} variant="outline-primary" onClick={() => setForm(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             className="bi bi-file-earmark-font" viewBox="0 0 16 16">
+                             className="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path
-                                d="M10.943 6H5.057L5 8h.5c.18-1.096.356-1.192 1.694-1.235l.293-.01v5.09c0 .47-.1.582-.898.655v.5H9.41v-.5c-.803-.073-.903-.184-.903-.654V6.755l.298.01c1.338.043 1.514.14 1.694 1.235h.5l-.057-2z"/>
-                            <path
-                                d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd"
+                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                         </svg>
                     </Button>
                     <Button variant={"outline-danger"} onClick={() => { props.deleteFilm(item.id) }}>

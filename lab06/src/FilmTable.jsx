@@ -34,7 +34,7 @@ function FilmTable(props) {
                         </thead>
                         <tbody id="table_body">
                         { props.films.map((item, index) => <FilmRow key={item.id} index={index+1} item={item} changeFavorite={props.changeFavorite} changeRating={props.changeRating} deleteFilm={props.deleteFilm} modify={props.modify}/>) }
-                        <FilmForm show={showForm} setShow={setShowForm} add={props.add}></FilmForm>
+                        <FilmForm show={showForm} setShow={setShowForm} add={props.add} delete={props.delete}></FilmForm>
                         </tbody>
                     </Table>
 

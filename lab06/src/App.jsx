@@ -70,11 +70,16 @@ function App() {
         }
     }
 
+    function deleteAll() {
+        filmLibrary.deleteAll();
+        setContext();
+    }
+
     return (
         <>
             <NavigationBar filter={filter} setFilter={setFilter} films={films} setFilms={setFilms}></NavigationBar>
-            <FilmTable films={films} filter={filter} setFilter={setFilter} setFilms={setFilms} changeFavorite={changeFavorite} changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm} modify={modifyFilm}></FilmTable>
-            { alert ? <Container className={"align-items-center d-flex justify-content-center fixed-bottom"}><Alert dismissible className={"text-center"} style={{width: "50rem"}} value={alert} onClose={() => setAlert('')} variant="danger">{alert} not valid!</Alert></Container> : false }
+            <FilmTable films={films} filter={filter} setFilter={setFilter} setFilms={setFilms} changeFavorite={changeFavorite} changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm} modify={modifyFilm} delete={deleteAll}></FilmTable>
+            { alert ? <Container className={"align-items-center d-flex justify-content-center fixed-bottom"}><Alert  className={"text-center"} style={{width: "50rem"}} value={alert} onClose={() => setAlert('')} variant="danger">{alert} not valid!</Alert></Container> : false }
         </>
     );
 
