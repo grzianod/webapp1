@@ -35,7 +35,7 @@ function NavigationBar(props) {
 
                         <Form className={"d-inline-flex"}>
                             <Form.Control
-                                style={{fontStyle: "italic"}}
+                                style={{fontStyle: "italic", maxWidth: "14rem"}}
                                 type="search"
                                 placeholder="Search..."
                                 className="flex-grow-1 me-2"
