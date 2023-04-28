@@ -31,8 +31,8 @@ function FilmForm(props) {
             <td style={{verticalAlign: "middle"}}></td>
             <td style={{verticalAlign: "middle"}}></td>
             <td style={{verticalAlign: "middle"}} className={"text-center"}>
-                <Container className={"justify-content-between"}>
-                    <Button className={"me-2"} type="button" variant={"outline-primary"} onClick={() => {
+                <Container className={"justify-content-between justify-content-center"} >
+                    <Button type="button" variant={"outline-primary"} onClick={() => {
                         props.setShow(true);}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-file-earmark-plus" viewBox="0 0 16 16">
@@ -93,7 +93,7 @@ function FilmForm(props) {
             </td>
             <td style={{verticalAlign: "middle"}} className={"text-center"}>
                 <Container className={"justify-content-center"}>
-                    <Button className={"me-2"} type="submit" variant={"outline-success"} onClick={save}>
+                    <Button type="submit" variant={"outline-success"} onClick={save}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-check2-square" viewBox="0 0 16 16">
                             <path

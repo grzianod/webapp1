@@ -11,7 +11,7 @@ function FilmTable(props) {
         <>
             <div className={"row"}>
                 <div className="col-lg-1 col-xl-2 col-md-1 col-sm-1 col-1"></div>
-                <div className="col-lg-10 col-xl-8 col-md-10 col-sm-10 col-10">
+                <div className="col-lg-10 col-xl-8 col-md-10 col-sm-10 col-11">
 
                     <br/>
                     <ul className="nav col-lg-auto me-lg-auto mb-2 mb-md-0">
@@ -40,7 +40,7 @@ function FilmTable(props) {
 
 
                 </div>
-                <div className="col-lg-1 col-xl-2 col-md-1 col-sm-1 col-1"></div>
+                <div className="col-lg-1 col-xl-2 col-md-1 col-sm-1 col-0"></div>
             </div>
         </>
     )

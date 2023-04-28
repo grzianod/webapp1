@@ -19,15 +19,15 @@ function FilmRow(props) {
         <tr>
             <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{props.index}</th>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <div className={"d-flex justify-content-center"}>
-                    <Form.Control style={{minWidth: "10rem", maxWidth: "12rem", height: "2rem", display: "inline-block", textAlign: "center"}} value={title} onChange={(event) => setTitle(event.target.value)}></Form.Control>
+                <div className={"d-flex justify-content-center w-auto"}>
+                    <Form.Control style={{ display: "inline-block", textAlign: "center"}} value={title} onChange={(event) => setTitle(event.target.value)}></Form.Control>
                 </div>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={favorite} value={favorite} onClick={(event) => { setFavorite(!favorite); }}/></td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <div className={"d-flex justify-content-center"}>
-                    <Form.Control type={"date"} style={{maxWidth: "10rem", height: "2rem", display: "inline-block", textAlign: "center"}} value={dayjs(date).format("YYYY-MM-DD")} onChange={(event) => setDate(event.target.value)}></Form.Control>
+                    <Form.Control max={dayjs().format("YYYY-MM-DD")} type={"date"} style={{ display: "inline-block", textAlign: "center"}} value={dayjs(date).format("YYYY-MM-DD")} onChange={(event) => setDate(event.target.value)}></Form.Control>
                 </div>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
@@ -58,8 +58,8 @@ function FilmRow(props) {
                 }
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Container className={"justify-content-between"}>
-                <Button className={"me-2"} inputMode={"none"} type={"button"} variant={"outline-success"} onClick={() => {
+                <Container className={"justify-content-between justify-content-center"} >
+                <Button inputMode={"none"} type={"button"} variant={"outline-success"} onClick={() => {
                     props.modify(item.id, title, favorite, date, rating);
                     if(title === "")
                         setTitle(item.title);
@@ -87,10 +87,10 @@ function FilmRow(props) {
     ) : (
         <tr>
             <th scope="row" className="text-center" style={{verticalAlign: "middle"}}>{props.index}</th>
-            <td className="text-center" style={{verticalAlign: "middle", minWidth: "13rem"}}>{item.title}</td>
+            <td className="text-center" style={{verticalAlign: "middle", }}>{item.title}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} disabled defaultChecked={item.favorites}/></td>
-            <td className="text-center" style={{verticalAlign: "middle", minWidth: "12rem"}}>{dayjs(item.date).isValid() ? dayjs(item.date).format("MMMM D, YYYY").toString() : "Unwatched"}</td>
+            <td className="text-center" style={{verticalAlign: "middle"}}>{dayjs(item.date).isValid() ? dayjs(item.date).format("MMMM D, YYYY").toString() : "Unwatched"}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 {
                     [...Array(5)].map( (star, index) => {
@@ -110,8 +110,8 @@ function FilmRow(props) {
                 }
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Container className={"justify-content-between"} style={{minWidth: "7.3rem"}}>
-                    <Button className={"me-2"} variant="outline-primary" onClick={() => setForm(true)}>
+                <Container className={"justify-content-between justify-content-center"}>
+                    <Button variant="outline-primary" onClick={() => setForm(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path
