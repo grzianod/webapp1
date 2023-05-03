@@ -68,7 +68,6 @@ function App() {
             filmLibrary.addNewFilmByElements(id, title, favorites, date, rating);
             setContext();
         }
-        return flag;
     }
 
     function deleteAll() {
