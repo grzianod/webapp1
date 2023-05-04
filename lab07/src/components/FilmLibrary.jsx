@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-function Film(id, title, favorites = false, date, rating ) {
+function Film(id, title, favorites = false, date, rating) {
     this.id = id ?? null;
     this.title = title ?? "";
     this.favorites = favorites ?? false;
@@ -13,11 +13,12 @@ function Film(id, title, favorites = false, date, rating ) {
 function FilmLibrary(films) {
     this.films = films ?? [];
 
-    this.checkID = function(id) {
-        return (this.films.filter( film => film.id === id).length === 0);
+    this.checkID = function (id) {
+        if (id <= 0) return false;
+        return (this.films.filter(film => film.id === id).length === 0);
     }
 
-    this.suggestedID = function() {
+    this.suggestedID = function () {
         return this.films.length + 1;
     }
 
@@ -29,53 +30,53 @@ function FilmLibrary(films) {
         this.films.push(film);
     }
 
-    this.getAll = function() {
-        return [...this.films].sort((a,b) => { return ( ( a.title === b.title ) ? 0 : ( ( a.title > b.title ) ? 1 : -1 ) ); });
+    this.getAll = function () {
+        return [...this.films];
     }
 
-    this.getFavorites = function() {
-        return [...this.films].filter( item => item.favorites );
+    this.getFavorites = function () {
+        return [...this.films].filter(item => item.favorites);
     }
 
-    this.getBestRated = function() {
-        return [...this.films].sort((a,b) => {
-            if(a.rating === b.rating) return ( ( a.title === b.title ) ? 0 : ( ( a.title > b.title ) ? 1 : -1 ) );
+    this.getBestRated = function () {
+        return [...this.films].sort((a, b) => {
+            if (a.rating === b.rating) return ((a.title === b.title) ? 0 : ((a.title > b.title) ? 1 : -1));
             else return (b.rating > a.rating) ? 1 : -1;
-        } );
+        });
     }
 
-    this.getUnseen = function() {
-        return [...this.films].filter( item => item.date === null );
+    this.getUnseen = function () {
+        return [...this.films].filter(item => item.date === null);
     }
 
-    this.getSeenLastMonth = function() {
+    this.getSeenLastMonth = function () {
         let now = dayjs();
-        return [...this.films].filter( item => {
-            if( item.date != null && dayjs(item.date).diff(now, "months") >= 0)
+        return [...this.films].filter(item => {
+            if (item.date != null && dayjs(item.date).diff(now, "months") >= 0)
                 return 1;
             return 0;
         });
     }
 
-    this.changeFavorite = function(id) {
+    this.changeFavorite = function (id) {
         this.films.forEach((film) => {
-            if(film.id === id) film.favorites = !film.favorites;
+            if (film.id === id) film.favorites = !film.favorites;
         });
     }
 
-    this.changeRating = function(id, index) {
-        this.films.forEach( (film) => {
-           if(film.id === id) film.rating = index;
+    this.changeRating = function (id, index) {
+        this.films.forEach((film) => {
+            if (film.id === id) film.rating = index;
         });
     }
 
-    this.deleteFilm = function(id) {
-       this.films = this.films.filter( (film) => film.id !== id);
+    this.deleteFilm = function (id) {
+        this.films = this.films.filter((film) => film.id !== id);
     }
 
-    this.modifyFilm = function(id, title, favorite, date, rating) {
-        this.films.forEach( (film) => {
-            if(film.id === id) {
+    this.modifyFilm = function (id, title, favorite, date, rating) {
+        this.films.forEach((film) => {
+            if (film.id === id) {
                 film.title = title;
                 film.favorites = favorite;
                 film.date = date;
@@ -84,7 +85,7 @@ function FilmLibrary(films) {
         })
     }
 
-    this.deleteAll = function() {
+    this.deleteAll = function () {
         this.films = [];
     }
 

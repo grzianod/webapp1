@@ -1,88 +1,112 @@
 import {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from "./NavBar.jsx";
-import FilmTable from "./FilmTable.jsx";
-import filmLibrary from "./FilmLibrary.jsx";
+import NavigationBar from "./components/NavBar.jsx";
+import FilmTable from "./components/FilmTable.jsx";
+import filmLibrary from "./components/FilmLibrary.jsx";
 import {Alert} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
+import {BrowserRouter, Route, Router, Routes, useParams} from "react-router-dom";
+import FilmForm from "./components/FilmForm.jsx";
+
+const filters = new Map();
+filters.set("edit", "Edit");
+filters.set("all", "All");
+filters.set("favorites", "Favorites");
+filters.set("bestrated", "Best Rated");
+filters.set("seenlastmonth", "Seen Last Month");
+filters.set("unseen", "Unseen");
 
 function App() {
-    const [filter, setFilter] = useState("All");
     const [films, setFilms] = useState(filmLibrary.getAll());
     const [alert, setAlert] = useState('');
+    const {filter} = useParams();
 
-    function setContext() {
-        if(filter === "All")
-            setFilms(filmLibrary.getAll());
-        if(filter === "Favorites")
-            setFilms(filmLibrary.getFavorites());
-        if(filter === "Best Rated")
-            setFilms(filmLibrary.getBestRated());
-        if(filter === "Seen Last Month")
-            setFilms(filmLibrary.getSeenLastMonth());
-        if(filter === "Unseen")
-            setFilms(filmLibrary.getUnseen());
+    function updateFilms() {
+        if (!filters.has(filter) || filter === "all") setFilms(filmLibrary.getAll());
+        if (filter === "favorites") setFilms(filmLibrary.getFavorites());
+        if (filter === "bestrated") setFilms(filmLibrary.getBestRated());
+        if (filter === "seenlastmonth") setFilms(filmLibrary.getSeenLastMonth());
+        if (filter === "unseen") setFilms(filmLibrary.getUnseen());
     }
 
     function changeFavorite(id) {
         filmLibrary.changeFavorite(id);
-        setContext();
+        updateFilms();
     }
 
     function changeRating(id, index) {
         filmLibrary.changeRating(id, index);
-        setContext();
+        updateFilms();
     }
 
     function deleteFilm(id) {
         filmLibrary.deleteFilm(id);
-        setContext();
+        updateFilms();
     }
 
     function modifyFilm(id, title, favorite, date, rating) {
         let flag = true;
-        if(title === "") {
+        if (title === "") {
             setAlert("Title");
             flag = false;
             setTimeout(() => setAlert(''), 3000);
         }
-        if(flag) {
+        if (flag) {
             filmLibrary.modifyFilm(id, title, favorite, date, rating);
-            setContext();
+            updateFilms();
         }
     }
 
     function addFilm(id, title, favorites, date, rating) {
         let flag = true;
-        if(!filmLibrary.checkID(id)) {
+        if (!filmLibrary.checkID(id)) {
             setAlert("ID");
             flag = false;
             setTimeout(() => setAlert(''), 3000);
         }
-        if(title === "") {
+        if (title === "") {
             setAlert("Title");
             flag = false;
             setTimeout(() => setAlert(''), 3000);
         }
-        if(flag) {
+        if (flag) {
             filmLibrary.addNewFilmByElements(id, title, favorites, date, rating);
-            setContext();
+            updateFilms();
         }
     }
 
     function deleteAll() {
         filmLibrary.deleteAll();
-        setContext();
+        updateFilms();
     }
 
     return (
         <>
-            <NavigationBar filter={filter} setFilter={setFilter} films={films} setFilms={setFilms}></NavigationBar>
-            <FilmTable films={films} filter={filter} setFilter={setFilter} setFilms={setFilms} changeFavorite={changeFavorite} changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm} modify={modifyFilm} delete={deleteAll}></FilmTable>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/:filter' element={
+                        <>
+                            <NavigationBar/>
+                            <FilmTable changeFavorite={changeFavorite}
+                                       changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm}
+                                       modify={modifyFilm} delete={deleteAll}/>
+                        </>
+                    }/>
+                    <Route path='/*' element={
+                        <>
+                            <NavigationBar/>
+                            <FilmTable changeFavorite={changeFavorite}
+                                       changeRating={changeRating} deleteFilm={deleteFilm} add={addFilm}
+                                       modify={modifyFilm} delete={deleteAll}/>
+                        </>
+                    }/>
+                </Routes>
+            </BrowserRouter>
             { alert ? <Container className={"align-items-center d-flex justify-content-center fixed-bottom"}><Alert  className={"text-center"} style={{width: "50rem"}} value={alert} onClose={() => setAlert('')} variant="danger">{alert} not valid!</Alert></Container> : false }
+
         </>
     );
 
 }
 
-export default App
+export {App, filters};

@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row, Button, Form, Table } from 'react-bootstrap';
-import {BrowserRouter} from "react-router-dom";
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { MainAnswers } from './components/AnswerComponents';
-import NavHeader from './components/NavbarComponents';
-import QuestionDescription from './components/QuestionComponents';
+import AnswerRoute from './components/AnswerRoute';
+import { FormRoute } from './components/AnswerForm';
 //import './App.css';
 
 function Question(id, text, author, date) {
@@ -38,7 +37,15 @@ const staticAnswerList = [
 ];
 
 
-
+function DefaultRoute() {
+  return(
+    <Container className='App'>
+      <h1>No data here...</h1>
+      <h2>This is not the route you are looking for!</h2>
+      <Link to='/'>Please go back to main page</Link>
+    </Container>
+  );
+}
 function App() {
   const [question, setQuestion] = useState(staticQuestionList[0]);
   const [answerList, setAnswerList] = useState(staticAnswerList);
@@ -86,15 +93,19 @@ function App() {
 
 
   return (
-    <>
-      <NavHeader />
-      <Container fluid>
-        <QuestionDescription question={question} />
-        <MainAnswers answerList={answerList} increaseScore={increaseScore}
-          deleteAnswer={deleteAnswer} addAnswer={addAnswer} editAnswer={editAnswer} />
-      </Container>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={ <AnswerRoute question={question} answerList={answerList}
+          increaseScore={increaseScore} addAnswer={addAnswer} deleteAnswer={deleteAnswer}
+          editAnswer={editAnswer} /> } />
+        <Route path='/add' element={ <FormRoute addAnswer={addAnswer} /> } />
+        <Route path='/edit/:answerId' element={<FormRoute answerList={answerList}
+          addAnswer={addAnswer} editAnswer={editAnswer} />} />
+        <Route path='/*' element={<DefaultRoute />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
+
 
 export default App
