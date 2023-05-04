@@ -10,7 +10,7 @@ import profile from "../../me.jpeg"
 import {filters} from "../App.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 
-function NavigationBar(props) {
+function NavigationBar() {
     const {filter} = useParams();
     const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function NavigationBar(props) {
             <Container fluid style={{margin: "2rem", marginRight: "0rem", marginBottom: "0rem"}}>
                 <Navbar.Brand type={"button"} onClick={() => navigate(`/`)}>
                     <ul className={"nav align-items-center align-items-start"}>
-                        <li><img src={pixar} width="68" height="68" className="rounded-circle me-2"></img></li>
+                        <li><img alt="photo" src={pixar} width="68" height="68" className="rounded-circle me-2"></img></li>
                         <li style={{fontSize: "2.1rem", color: "#2F3B50"}}>
                             <strong>Netflux</strong></li>
                     </ul>

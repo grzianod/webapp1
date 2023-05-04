@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FilmRow from "./FilmRow.jsx"
 import {Table} from "react-bootstrap";
 import FilmForm from "./FilmForm.jsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import filmLibrary from "./FilmLibrary.jsx";
 
 const filters = new Map();
@@ -15,7 +15,6 @@ filters.set("unseen", "Unseen");
 
 function FilmTable(props) {
     const {filter} = useParams();
-    const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false);
 
     return (
@@ -45,23 +44,23 @@ function FilmTable(props) {
                         </tr>
                         </thead>
                         <tbody id="table_body">
-                        {(!filters.has(filter) || filter === "all") ? filmLibrary.getAll().map((item, index) => <FilmRow
+                        {(!filters.has(filter) || filter === "all") ? filmLibrary.getAll().map((item) => <FilmRow
                             key={item.id} item={item} changeFavorite={props.changeFavorite}
                             changeRating={props.changeRating} deleteFilm={props.deleteFilm}
                             modify={props.modify}/>) : false}
-                        {(filter === "favorites") ? filmLibrary.getFavorites().map((item, index) => <FilmRow
+                        {(filter === "favorites") ? filmLibrary.getFavorites().map((item) => <FilmRow
                             key={item.id} item={item} changeFavorite={props.changeFavorite}
                             changeRating={props.changeRating} deleteFilm={props.deleteFilm}
                             modify={props.modify}/>) : false}
-                        {(filter === "bestrated") ? filmLibrary.getBestRated().map((item, index) => <FilmRow
+                        {(filter === "bestrated") ? filmLibrary.getBestRated().map((item) => <FilmRow
                             key={item.id} item={item} changeFavorite={props.changeFavorite}
                             changeRating={props.changeRating} deleteFilm={props.deleteFilm}
                             modify={props.modify}/>) : false}
-                        {(filter === "seenlastmonth") ? filmLibrary.getSeenLastMonth().map((item, index) => <FilmRow
+                        {(filter === "seenlastmonth") ? filmLibrary.getSeenLastMonth().map((item) => <FilmRow
                             key={item.id} item={item} changeFavorite={props.changeFavorite}
                             changeRating={props.changeRating} deleteFilm={props.deleteFilm}
                             modify={props.modify}/>) : false}
-                        {(filter === "unseen") ? filmLibrary.getUnseen().map((item, index) => <FilmRow key={item.id}
+                        {(filter === "unseen") ? filmLibrary.getUnseen().map((item) => <FilmRow key={item.id}
                                                                                                        item={item}
                                                                                                        changeFavorite={props.changeFavorite}
                                                                                                        changeRating={props.changeRating}

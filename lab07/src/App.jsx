@@ -5,8 +5,7 @@ import FilmTable from "./components/FilmTable.jsx";
 import filmLibrary from "./components/FilmLibrary.jsx";
 import {Alert} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import {BrowserRouter, Route, Router, Routes, useParams} from "react-router-dom";
-import FilmForm from "./components/FilmForm.jsx";
+import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
 
 const filters = new Map();
 filters.set("edit", "Edit");

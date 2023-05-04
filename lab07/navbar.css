@@ -14,3 +14,6 @@ body {
   stroke: #E4BB67;
 }
 
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
