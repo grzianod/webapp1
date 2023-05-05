@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import filmLibrary from "./FilmLibrary.jsx";
 import Container from "react-bootstrap/Container";
 import {useSearchParams} from "react-router-dom";
+import dayjs from "dayjs";
 
 function FilmForm(props) {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -34,7 +35,7 @@ function FilmForm(props) {
             <td style={{verticalAlign: "middle"}}></td>
             <td style={{verticalAlign: "middle"}}></td>
             <td style={{verticalAlign: "middle"}} className={"text-center"}>
-                <Container className={"justify-content-between justify-content-center"} >
+                <Container className={"d-inline-flex fluid justify-content-around"}>
                     <Button type="button" variant={"outline-primary"} onClick={() => {
                         setSearchParams({ "add" : id.toString() });
                     }}>
@@ -61,25 +62,23 @@ function FilmForm(props) {
     ) : (
         <tr>
                 <td scope="row" className="text-center" style={{verticalAlign: "middle"}}><strong>{id}</strong></td>
-                <td style={{verticalAlign: "middle"}}>
-                    <div className={"d-flex justify-content-center"}>
-                        <Form.Control
-                            style={{maxWidth: "12rem", height: "2rem", display: "inline-block", textAlign: "center"}}
-                            onChange={(event) => setTitle(event.target.value)}></Form.Control>
-                    </div>
-                </td>
+                <td className="text-center" style={{verticalAlign: "middle"}}>
+                    <Container className={"d-flex"}>
+                        <Form.Control style={{display: "inline-block", textAlign: "center", width: "inherit"}} value={title.toString()}
+                                  onChange={(event) => setTitle(event.target.value)}></Form.Control>
+                    </Container>
+                 </td>
                 <td className="text-center" style={{verticalAlign: "middle"}}>
                     <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={false}
                                 onChange={(event) => setFavorite(event.target.value === "on")}/></td>
                 <td style={{verticalAlign: "middle"}}>
-                    <div className={"d-flex justify-content-center"}>
-                        <Form.Control type={"date"} style={{
-                            maxWidth: "10rem",
+                    <Container className={"d-flex"}>
+                        <Form.Control type={"date"} max={dayjs().format("YYYY-MM-DD")} style={{
                             height: "2rem",
                             display: "inline-block",
                             textAlign: "center"
                         }} onChange={(event) => setDate(event.target.value)}></Form.Control>
-                    </div>
+                    </Container>
                 </td>
                 <td style={{verticalAlign: "middle"}}>
                     <div className={"d-flex justify-content-center"}>
@@ -106,7 +105,7 @@ function FilmForm(props) {
                     </div>
                 </td>
                 <td style={{verticalAlign: "middle"}} className={"text-center"}>
-                    <Container className={"justify-content-center"}>
+                    <Container className={"d-inline-flex fluid justify-content-around"}>
                         <Button type="submit" variant={"outline-success"} onClick={save}>
                             <svg key={"add"} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  className="bi bi-check2-square" viewBox="0 0 16 16">

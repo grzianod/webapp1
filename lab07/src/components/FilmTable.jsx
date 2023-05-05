@@ -15,7 +15,6 @@ filters.set("unseen", "Unseen");
 
 function FilmTable(props) {
     const {filter} = useParams();
-    const [showForm, setShowForm] = useState(false);
 
     return (
         <>
@@ -66,8 +65,7 @@ function FilmTable(props) {
                                                                                                        changeRating={props.changeRating}
                                                                                                        deleteFilm={props.deleteFilm}
                                                                                                        modify={props.modify}/>) : false}
-                        <FilmForm show={showForm} setShow={setShowForm} add={props.add}
-                                  delete={props.delete}></FilmForm>
+                        <FilmForm add={props.add} delete={props.delete}></FilmForm>
                         </tbody>
                     </Table>
 

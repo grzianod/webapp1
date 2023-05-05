@@ -23,10 +23,10 @@ function FilmRow(props) {
             <td scope="row" className="text-center" style={{verticalAlign: "middle"}}><strong>{props.item.id}</strong>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <div className={"d-flex justify-content-center w-auto"}>
-                    <Form.Control style={{display: "inline-block", textAlign: "center"}} value={title.toString()}
+                <Container className={"d-flex"}>
+                    <Form.Control style={{display: "inline-block", textAlign: "center", width: "inherit"}} value={title.toString()}
                                   onChange={(event) => setTitle(event.target.value)}></Form.Control>
-                </div>
+                </Container>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} defaultChecked={favorite} value={favorite}
@@ -34,12 +34,12 @@ function FilmRow(props) {
                                 setFavorite(!favorite);
                             }}/></td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <div className={"d-flex justify-content-center"}>
+                <Container className={"d-flex"}>
                     <Form.Control max={dayjs().format("YYYY-MM-DD")} type={"date"}
                                   style={{display: "inline-block", textAlign: "center"}}
                                   value={dayjs(date).format("YYYY-MM-DD")}
                                   onChange={(event) => setDate(event.target.value)}></Form.Control>
-                </div>
+                </Container>
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 {
@@ -69,7 +69,7 @@ function FilmRow(props) {
                 }
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Container className={"justify-content-between justify-content-center"}>
+                <Container className={"d-inline-flex fluid justify-content-around"}>
                     <Button inputMode={"none"} type={"button"} variant={"outline-success"} onClick={() => {
                         props.modify(item.id, title, favorite, date, rating);
                         if (title === "")
@@ -102,7 +102,7 @@ function FilmRow(props) {
         <tr>
             <td scope="row" className="text-center" style={{verticalAlign: "middle"}}><strong>{props.item.id}</strong>
             </td>
-            <td className="text-center" style={{verticalAlign: "middle",}}>{item.title}</td>
+            <td className="text-center" style={{verticalAlign: "middle", minWidth: "15rem"}}>{item.title}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} disabled defaultChecked={item.favorites}/></td>
             <td className="text-center"
@@ -126,7 +126,7 @@ function FilmRow(props) {
                 }
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Container className={"justify-content-between justify-content-center"}>
+                <Container className={"d-inline-flex fluid justify-content-around"}>
                     <Button variant="outline-primary"
                             onClick={() => setSearchParams({"edit": props.item.id.toString()})}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
