@@ -10,6 +10,18 @@ body {
   color: white;
 }
 
+.active.nav-link {
+  color: #3d4857 !important;
+}
+
+.form-control {
+  background-color: #f9f9f9 !important;
+}
+
+.primary-text {
+  color: #3d4857 !important;
+}
+
 .bi-star-fill.form:hover {
   stroke: #E4BB67;
 }

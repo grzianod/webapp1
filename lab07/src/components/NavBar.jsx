@@ -16,12 +16,12 @@ function NavigationBar() {
 
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="white" variant="white">
-            <Container fluid style={{margin: "2rem", marginRight: "0rem", marginBottom: "0rem"}}>
+        <Navbar collapseOnSelect expand="lg" bg="#f9f9f9">
+            <Container fluid style={{marginTop: "2rem", marginLeft: "1rem", marginRight: "1rem"}}>
                 <Navbar.Brand type={"button"} onClick={() => navigate(`/`)}>
                     <ul className={"nav align-items-center align-items-start"}>
                         <li><img alt="photo" src={pixar} width="68" height="68" className="rounded-circle me-2"></img></li>
-                        <li style={{fontSize: "2.1rem", color: "#2F3B50"}}>
+                        <li style={{fontSize: "2.1rem"}} className={"primary-text"}>
                             <strong>Netflux</strong></li>
                     </ul>
                 </Navbar.Brand>

@@ -25,13 +25,12 @@ function FilmTable(props) {
                     <br/>
                     <ul className="nav col-lg-auto me-lg-auto mb-2 mb-md-0 ms-4">
                         <strong>
-                            <li style={{fontSize: "2rem", color: "#2F3B50"}}
-                                id="main_title">{(filters.has(filter)) ? filters.get(filter) : "All"}</li>
+                            <li style={{fontSize: "2rem"}} className={"primary-text"}>{(filters.has(filter)) ? filters.get(filter) : "All"}</li>
                         </strong>
                     </ul>
                     <br/>
 
-                    <Table className="table justify-content-center" id="table">
+                    <Table className="table justify-content-center ms-3 primary-text" id="table">
                         <thead className="thead-dark-bg">
                         <tr>
                             <th scope="col" className="text-center">#</th>
