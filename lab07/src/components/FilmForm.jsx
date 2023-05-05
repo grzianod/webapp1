@@ -35,7 +35,7 @@ function FilmForm(props) {
             <td style={{verticalAlign: "middle"}}></td>
             <td style={{verticalAlign: "middle"}}></td>
             <td style={{verticalAlign: "middle"}} className={"text-center"}>
-                <Container className={"d-inline-flex fluid justify-content-around"}>
+                <Container className={"d-inline-flex fluid justify-content-around"} style={{maxWidth: "8rem"}}>
                     <Button type="button" variant={"outline-primary"} onClick={() => {
                         setSearchParams({ "add" : id.toString() });
                     }}>
@@ -105,7 +105,7 @@ function FilmForm(props) {
                     </div>
                 </td>
                 <td style={{verticalAlign: "middle"}} className={"text-center"}>
-                    <Container className={"d-inline-flex fluid justify-content-around"}>
+                    <Container className={"d-inline-flex fluid justify-content-around"} style={{maxWidth: "8rem"}}>
                         <Button type="submit" variant={"outline-success"} onClick={save}>
                             <svg key={"add"} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  className="bi bi-check2-square" viewBox="0 0 16 16">

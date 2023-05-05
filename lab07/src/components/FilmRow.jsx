@@ -24,7 +24,7 @@ function FilmRow(props) {
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Container className={"d-flex"}>
-                    <Form.Control style={{display: "inline-block", textAlign: "center", width: "inherit"}} value={title.toString()}
+                    <Form.Control style={{display: "inline-block", textAlign: "center"}} value={title.toString()}
                                   onChange={(event) => setTitle(event.target.value)}></Form.Control>
                 </Container>
             </td>
@@ -69,7 +69,7 @@ function FilmRow(props) {
                 }
             </td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Container className={"d-inline-flex fluid justify-content-around"}>
+                <Container className={"d-inline-flex fluid justify-content-around"} style={{maxWidth: "8rem"}}>
                     <Button inputMode={"none"} type={"button"} variant={"outline-success"} onClick={() => {
                         props.modify(item.id, title, favorite, date, rating);
                         if (title === "")
@@ -102,7 +102,7 @@ function FilmRow(props) {
         <tr>
             <td scope="row" className="text-center" style={{verticalAlign: "middle"}}><strong>{props.item.id}</strong>
             </td>
-            <td className="text-center" style={{verticalAlign: "middle", minWidth: "15rem"}}>{item.title}</td>
+            <td className="text-center" style={{verticalAlign: "middle"}}>{item.title}</td>
             <td className="text-center" style={{verticalAlign: "middle"}}>
                 <Form.Check type="checkbox" id={`default-checkbox`} disabled defaultChecked={item.favorites}/></td>
             <td className="text-center"
@@ -125,8 +125,8 @@ function FilmRow(props) {
                     })
                 }
             </td>
-            <td className="text-center" style={{verticalAlign: "middle"}}>
-                <Container className={"d-inline-flex fluid justify-content-around"}>
+            <td className="text-center" style={{verticalAlign: "middle"}} >
+                <Container className={"d-inline-flex fluid justify-content-around"} style={{maxWidth: "8rem"}}>
                     <Button variant="outline-primary"
                             onClick={() => setSearchParams({"edit": props.item.id.toString()})}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
