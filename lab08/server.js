@@ -20,29 +20,42 @@ app.get('/api/films', (req, res) => {
 });
 
 app.get('/api/films/filters/:filter', (req, res) => {
-    if (req.params.filter === "all") FilmLibrary.getAll()
-                            .then(films => res.json(films))
-                            .catch(() => res.status(500).end());
-    if (req.params.filter === "favorites") FilmLibrary.getFavorites()
-                                    .then(films => res.json(films))
-                                    .catch(() => res.status(500).end());
-    if (req.params.filter === "bestrated") FilmLibrary.getBestRated()
-                                .then(films => res.json(films))
-                                .catch(() => res.status(500).end());
-    if (req.params.filter === "seenlastmonth") FilmLibrary.getSeenLastMonth()
-                                                .then(films => res.json(films))
-                                                .catch(() => res.status(500).end());
-    if (req.params.filter === "unseen") FilmLibrary.getUnseen()
-                                            .then(films => res.json(films))
-                                            .catch(() => res.status(500).end());
+    switch (req.params.filter) {
+        case "all": FilmLibrary.getAll()
+            .then(films => res.json(films))
+            .catch(() => res.status(500).end());
+        break;
+        case "favorite": FilmLibrary.getFavorites()
+            .then(films => res.json(films))
+            .catch(() => res.status(500).end());
+        break;
+        case "bestrated": FilmLibrary.getBestRated()
+            .then(films => res.json(films))
+            .catch(() => res.status(500).end());
+        break;
+        case "seenlastmonth": FilmLibrary.getSeenLastMonth()
+            .then(films => res.json(films))
+            .catch(() => res.status(500).end());
+        break;
+        case "unseen": FilmLibrary.getUnseen()
+            .then(films => res.json(films))
+            .catch(() => res.status(500).end());
+        break;
+        default: return res.status(404).end();
+    }
     }
 );
 
 app.get('/api/films/:id', (req, res) => {
-   FilmLibrary.getFilm(req.params.id).then(films => res.json(films)).catch(() => res.status(500).end());
+    FilmLibrary.getFilm(req.params.id).then(films => {
+        if(films.length === 0)
+            return res.status(404).end();
+        res.json(films);
+        res.status(200).end();
+    }).catch(() => res.status(500).end());
 });
 
-app.post('/api/films/insert', [
+app.post('/api/films/add', [
     check('favorite').isBoolean(),
     check('rating').isNumeric({ min: 0, max: 5 }),
     check('watchdate').isDate({format: 'YYYY-MM-DD', strictMode: true}),
@@ -60,7 +73,7 @@ app.post('/api/films/insert', [
                 })
                 .catch(() => res.status(505).end());
         } catch (err) {
-            res.status(503).json({ error: `Database error during the creation of answer ${answer.text} by ${answer.respondent}.` });
+            res.status(503).json({ error: `Database error during the creation of Film ${answer.text} by ${answer.respondent}.` });
         }
 
 });
@@ -129,7 +142,7 @@ app.put('/api/films/update/:id/favorite', [
     });
 
 app.delete('/api/films/:id', (req, res) => {
-    FilmLibrary.deleteFilm(req.params.id).then(() => res.status(204).end()).catch(() => res.status(500).end());
+    FilmLibrary.deleteFilm(req.params.id).then(() => res.status(200).end()).catch(() => res.status(500).end());
 });
 
 app.listen(port, () => console.log("Film Library Server listening on " + server + ":" + port + "..."));

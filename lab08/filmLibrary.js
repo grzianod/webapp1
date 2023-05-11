@@ -67,6 +67,7 @@ exports.getFilm = async function (id) {
     return new Promise((resolve, reject) => {
         db.all("SELECT * FROM films WHERE id = ?;", [id], (err, rows) => {
             if (err) reject(err);
+            if (rows === undefined) resolve({error: 'Film not found.'});
             else resolve(rows.map(item => new Film(item.id, item.title, item.favorite, dayjs(item.watchdate).isValid() ? dayjs(item.watchdate) : null, item.rating)));
         });
     });
@@ -141,7 +142,7 @@ exports.deleteFilm = async function(id) {
     return new Promise((resolve, reject) => {
         db.all("DELETE FROM films WHERE id = ?;", [id], (err, rows) => {
             if (err) reject(err);
-            else resolve(rows.map(item => new Film(item.id, item.title, item.favorite, dayjs(item.watchdate).isValid() ? dayjs(item.watchdate) : null, item.rating)));
+            else resolve(this.lastID);
         });
     });
 }
