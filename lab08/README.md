@@ -65,7 +65,7 @@ Hereafter, we report the designed HTTP APIs, also implemented in the project.
 
 - Request body: _None_
 
-- Response: `200 OK` (success), `404 Not Found` (wrong ID), or `500 Internal Server Error` (generic error).
+- Response: `200 OK` (success), `404 Not Found` (wrong filter), or `500 Internal Server Error` (generic error).
 
 - Response body: An array of objects, each describing an answer as shown below:
     ```
