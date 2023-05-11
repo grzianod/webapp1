@@ -1,4 +1,4 @@
-# `Netflux Server`
+# Netflux Server
 
 The `Netflux Server` is the server-side app companion of the `Netflux` front-end. It presents some APIs to perform CRUD operations on the Films of the `Netflux` web application.
 
