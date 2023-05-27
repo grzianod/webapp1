@@ -1,0 +1,45 @@
+GET http://localhost:3002/api/films
+###
+
+GET http://localhost:3002/api/films/filters/all
+###
+
+GET http://localhost:3002/api/films/filters/favorites
+###
+
+GET http://localhost:3002/api/films/filters/bestrated
+###
+
+GET http://localhost:3002/api/films/filters/seenlastmonth
+###
+
+GET http://localhost:3002/api/films/filters/unseen
+###
+
+POST http://localhost:3002/api/films/add
+Content-Type: application/json
+
+{
+  "title": "Belli ciao",
+  "favorite": true,
+  "watchdate": "2023-05-01",
+  "rating": 5,
+  "user": 3
+}
+###
+
+PUT http://localhost:3002/api/films/update/2
+Content-Type: application/json
+
+{
+  "title": "Belli ciao",
+  "favorite": true,
+  "watchdate": "2023-05-10",
+  "rating": 3,
+  "user": 3
+}
+###
+
+
+DELETE http://localhost:3002/api/films/16
+###

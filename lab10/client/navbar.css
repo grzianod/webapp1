@@ -1,0 +1,55 @@
+body {
+  padding-bottom: 20px;
+}
+
+#sidebar {
+  height: 100%;
+}
+
+.nav-pills:active {
+  color: white;
+}
+
+.active.nav-link {
+  color: #3d4857 !important;
+}
+
+.form-control {
+  background-color: #f9f9f9 !important;
+}
+
+.primary-text {
+  color: #3d4857 !important;
+}
+
+.bi-star-fill.form:hover {
+  stroke: #E4BB67;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 15rem;
+  height: 15rem;
+  border: 1rem solid #f3f3f3; /* Light grey */
+  border-top: 1rem solid #3d4857; /* Blue */
+  border-radius: 50%;
+  animation: spinner 1.3s linear infinite;
+}
+
+.spinner-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
