@@ -35,7 +35,7 @@ function FilmForm(props) {
             <td style={{verticalAlign: "middle"}} className={"text-center"}>
                 <Container className={"d-inline-flex fluid justify-content-around"} style={{maxWidth: "8rem"}}>
                     <Button type="button" variant={"outline-primary"} onClick={() => {
-                        setSearchParams({ "add" : "new".toString() });
+                        setSearchParams({ "add" : "new" });
                     }}>
                         <svg key={"save"} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-file-earmark-plus" viewBox="0 0 16 16">

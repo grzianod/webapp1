@@ -10,30 +10,30 @@ const cors = require('cors');
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(cors( { origin: "*", credentials: true } ));
+app.use(cors( { } ));
 
-const server = "http://localhost"
+const server = "http://192.168.0.3"
 const port = 3002
 app.get('/api/films/filters/:filter', async (req, res) => {
     switch (req.params.filter) {
         case "all": FilmLibrary.getAll()
-            .then(films => setTimeout(() => res.json(films), 1000))
+            .then(films => res.json(films))
             .catch(() => res.status(500).json({ error: "Internal Server Error"} ).end());
         break;
         case "favorites": FilmLibrary.getFavorites()
-            .then(films => setTimeout(() => res.json(films), 1000))
+            .then(films => res.json(films))
             .catch(() => res.status(500).json({ error: "Internal Server Error"} ).end());
         break;
         case "bestrated": FilmLibrary.getBestRated()
-            .then(films => setTimeout(() => res.json(films), 1000))
+            .then(films => res.json(films))
             .catch(() => res.status(500).json({ error: "Internal Server Error"} ).end());
         break;
         case "seenlastmonth": FilmLibrary.getSeenLastMonth()
-            .then(films => setTimeout(() => res.json(films), 1000))
+            .then(films => res.json(films))
             .catch(() => res.status(500).json({ error: "Internal Server Error"} ).end());
         break;
         case "unseen": FilmLibrary.getUnseen()
-            .then(films => setTimeout(() => res.json(films), 1000))
+            .then(films => res.json(films))
             .catch(() => res.status(500).json({ error: "Internal Server Error"} ).end());
         break;
         default: return res.status(404).json({error: "Filter Not Valid"} ).end();
@@ -55,7 +55,7 @@ app.post('/api/films/add', [
         try {
             FilmLibrary.addFilm(req.body.title, req.body.favorite, req.body.watchdate, req.body.rating, req.body.user)
                 .then((id) => {
-                    setTimeout(() => res.status(201).json({ id: id, title: req.body.title, favorite: req.body.favorite, watchdate: req.body.watchdate, rating: req.body.rating, user: req.body.user }), 1000);
+                    res.status(201).json({ id: id, title: req.body.title, favorite: req.body.favorite, watchdate: req.body.watchdate, rating: req.body.rating, user: req.body.user })
                 })
                 .catch(() => res.status(505).end());
         } catch (err) {
@@ -67,7 +67,7 @@ app.post('/api/films/add', [
 
 app.delete('/api/films/:id', (req, res) => {
     FilmLibrary.deleteFilm(req.params.id)
-        .then(() => setTimeout(() => res.status(200).end(), 1000))
+        .then(() => res.status(200).end())
         .catch(() => res.status(500).json({ error: "Internal Server Error"} ).end());
 });
 
@@ -85,7 +85,7 @@ app.put('/api/films/update/:id', [
         try {
             FilmLibrary.modifyFilm(req.params.id, req.body.title, req.body.favorite, req.body.watchdate, req.body.rating, req.body.user)
                 .then((id) => {
-                    setTimeout( () => res.status(201).json({ id: id, title: req.body.title, favorite: req.body.favorite, watchdate: req.body.watchdate, rating: req.body.rating, user: req.body.user }) ,1000);
+                    res.status(201).json({ id: id, title: req.body.title, favorite: req.body.favorite, watchdate: req.body.watchdate, rating: req.body.rating, user: req.body.user }).end();
                 })
                 .catch(() => res.status(505).end());
         } catch (err) {

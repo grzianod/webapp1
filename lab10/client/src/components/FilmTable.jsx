@@ -27,38 +27,40 @@ function FilmTable(props) {
 
     useEffect( () => {
         if(loading) {
-            API.getFilms(filter)
-                .then((response) => {
-                    if (response["error"]) {
-                        setError(response["error"])
-                        setLoading(false);
-                    }
-                    else {
-                        setError(false);
-                        setLoading(false);
-                        props.setFilms(response);
-                    }
-                })
-                .catch((response) => setError(response["error"]));
+            setTimeout( () => {
+                API.getFilms(filter)
+                    .then((response) => {
+                        if (response["error"]) {
+                            setError(response["error"])
+                            setLoading(false);
+                        }
+                        else {
+                            setError(false);
+                            setLoading(false);
+                            console.log(response);
+                            props.setFilms(response);
+                        }
+                    })
+                    .catch((response) => setError(response["error"]));
+            },500);
         }
     }, [loading]);
 
     function addFilm(title, favorite, date, rating) {
-        setLoading(true);
-        API.addFilm(title, (favorite || false), (dayjs(date).isValid()) ? dayjs(date).format("YYYY-MM-DD") : null, rating,  1)
+        API.addFilm(title, (favorite || false), dayjs(date).isValid() ? dayjs(date).format("YYYY-MM-DD") : null, rating,  1)
             .then( (response) => {
                 if(response["error"]) {
                     setError(response["error"])
                 }
                 else {
                     setError(null);
+                    setLoading(true);
                 }
             })
             .catch((response) => setError(response["error"]));
     }
 
     function deleteFilm(id) {
-        setLoading(true);
         API.deleteFilm(id)
             .then( (response) => {
                 if(response["error"]) {
@@ -66,13 +68,13 @@ function FilmTable(props) {
                 }
                 else {
                     setError(null);
+                    setLoading(true);
                 }
             })
             .catch((response) => setError(response["error"]));
     }
 
     function editFilm(id, title, favorite, date, rating) {
-        setLoading(true);
         API.editFilm(id, title, (favorite || false), (dayjs(date).isValid()) ? dayjs(date).format("YYYY-MM-DD") : null, rating)
             .then( (response) => {
                 if(response["error"]) {
@@ -80,6 +82,7 @@ function FilmTable(props) {
                 }
                 else {
                     setError(null);
+                    setLoading(true);
                 }
             })
             .catch((response) => setError(response["error"]));

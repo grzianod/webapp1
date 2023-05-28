@@ -1,9 +1,9 @@
 
-const URL = 'http://localhost:3001/api';
+const URL = 'http://192.168.0.3:3002/api/films/';
 
 async function getFilms(filter) {
     return new Promise( (resolve, reject) => {
-        const response = fetch("http://localhost:3002/api/films/filters/" + (filter || "all"))
+        const response = fetch(URL + "filters/" + (filter || "all"))
             .then( async (response) => resolve(await response.json()))
             .catch( () => reject({error: "Unable to reach server"}));
     });
@@ -11,7 +11,7 @@ async function getFilms(filter) {
 
 async function addFilm(title, favorite, watchdate, rating, userID) {
     return new Promise( (resolve, reject) => {
-       const response = fetch("http://localhost:3002/api/films/add", {
+       const response = fetch(URL + "add", {
             method : "POST",
             headers : { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title: title, favorite: favorite, watchdate: watchdate, rating: rating, user: 1 }) })
@@ -31,7 +31,7 @@ async function addFilm(title, favorite, watchdate, rating, userID) {
 
 async function deleteFilm(id) {
     return new Promise( (resolve, reject) => {
-        const response = fetch(`http://localhost:3002/api/films/${id}`, {
+        const response = fetch(URL + id.toString(), {
             method: "DELETE",
             headers : { 'Content-Type': 'application/json' }
             })
@@ -42,7 +42,7 @@ async function deleteFilm(id) {
 
 async function editFilm(id, title, favorite, watchdate, rating) {
     return new Promise( (resolve, reject) => {
-        const response = fetch(`http://localhost:3002/api/films/update/${id}`, {
+        const response = fetch(URL + `update/${id}`, {
             method : "PUT",
             headers : { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title: title, favorite: favorite, watchdate: watchdate, rating: rating, user: 1 }) })
