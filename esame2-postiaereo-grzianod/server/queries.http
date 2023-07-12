@@ -1,0 +1,11 @@
+GET http://localhost:3002/api/seats/
+###
+
+GET http://localhost:3002/api/booking/seats/local/booked
+###
+
+GET http://localhost:3002/api/booking/seats/regional/booked
+###
+
+GET http://localhost:3002/api/booking/seats/international/booked
+###

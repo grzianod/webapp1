@@ -1,0 +1,131 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (min-height: 800px) {
+  .welcome-container {
+    align-items: center;
+  }
+}
+
+#sidebar {
+  height: 100%;
+}
+
+.nav-pills:active {
+  color: white;
+}
+
+.active.nav-link {
+  color: #3d4857 !important;
+}
+
+.form-control {
+  background-color: #f9f9f9 !important;
+}
+
+.primary-text {
+  color: #3d4857 !important;
+}
+
+.international-color {
+  color: #212529 !important;
+  fill: #212529 !important;
+}
+
+.active {
+  color: #212529 !important;
+  font-weight: bold !important;
+}
+
+.button-international {
+  background-color: white !important;
+  border-color: #212529 !important;
+  width: 20rem !important;
+}
+
+.regional-color {
+  color: #dc3545 !important;
+  fill: #dc3545 !important;
+}
+
+.active-regional {
+  color: #dc3545 !important;
+  font-weight: bold !important;
+}
+
+
+.local-color {
+  color: #198754 !important;
+  fill: #198754 !important;;
+}
+
+.active-local {
+  color: #198754 !important;
+  font-weight: bold !important;
+}
+
+button-local {
+  background-color: white !important;
+  border-color: #198754 !important;
+  width: 20rem !important;
+}
+
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.seats-table {
+  border-left: 3px solid rgba(33, 37, 41, 0.3);
+  border-right: 3px solid rgba(33, 37, 41, 0.3);
+}
+
+.loading-spinner {
+
+  border: 1rem solid #f3f3f3; /* Light grey */
+  border-top: 1rem solid #0078fe; /* Blue */
+  border-radius: 50%;
+  animation: spinner 1.3s linear infinite;
+}
+
+.spinner-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-color {
+  color: #0078fe !important;
+  fill: #0078fe !important;
+
+}
+
+.title-text {
+  color: #0078fe !important;
+  font-weight: bold !important;
+}
+
+.color-transition {
+  animation: colorChange 500ms ease 0s 1 reverse forwards;
+}
+
+@keyframes colorChange {
+  0% {
+    color: #0077ff;
+  }
+  100% {
+    color: white;
+  }
+}
