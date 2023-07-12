@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "dayjs": "^1.11.7",
-    "react-bootstrap": "^2.7.2"
-  }
-}
